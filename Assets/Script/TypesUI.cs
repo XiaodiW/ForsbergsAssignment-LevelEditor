@@ -7,7 +7,7 @@ public class TypesUI : MonoBehaviour
 
     private void Start()
     {
-        // _tileTypeSelected = GetComponentInChildren<TileType>();
+        if (transform.GetChild(0) != null) _tileTypeSelected = transform.GetChild(0).GetComponent<TypeUI>().tileType;
     }
 
     public void Selected (TileType _tileTypeDest)

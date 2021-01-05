@@ -20,13 +20,20 @@ public class TypeUI : MonoBehaviour
         ButtonText = selectButton.GetComponentInChildren<Text>();
         colorPicker = GetComponentInChildren<FlexibleColorPicker>();
         colorPicker.gameObject.SetActive(colorPickerState);
+        image.color = tileType.color;
+        nameText.text = tileType.name;
+
     }
 
     private void Update()
     {
-        image.color = tileType.color;
-        nameText.text = tileType.name;
         ButtonText.text = (typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
+        if (colorPickerState)
+        {
+            image.color = colorPicker.color;
+            tileType.color = image.color;
+        }
+
     }
 
     public void OnButtonDown()
@@ -38,7 +45,19 @@ public class TypeUI : MonoBehaviour
     {
         colorPickerState = !colorPickerState;
         colorPicker.gameObject.SetActive(colorPickerState);
-        image.color = colorPicker.color;
-        tileType.color = image.color;
     }
+    //
+    //
+    // private void HideIfClickedOutside(GameObject panel) {
+    //     if (Input.GetMouseButton(0) && panel.activeSelf &&
+    //         !RectTransformUtility.RectangleContainsScreenPoint(
+    //             panel.GetComponent<RectTransform>(),
+    //             Input.mousePosition,
+    //             Camera.main)) {
+    //         // colorPickerState = !colorPickerState;
+    //         colorPicker.gameObject.SetActive(false);
+    //         // image.color = colorPicker.color;
+    //         // tileType.color = image.color;
+    //     }
+    // }
 }
