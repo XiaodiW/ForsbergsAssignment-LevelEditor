@@ -8,15 +8,18 @@ public class TypeUI : MonoBehaviour
     private TypesUI typesUI;
     public Text nameText;
     private Image image;
-    private Button button;
+    public Button selectButton;
     private Text ButtonText;
+    private FlexibleColorPicker colorPicker;
+    bool colorPickerState;
 
     private void Start()
     {
         image = GetComponentInChildren<Image>();
         typesUI = GetComponentInParent<TypesUI>();
-        button = GetComponentInChildren<Button>();
-        ButtonText = button.GetComponentInChildren<Text>();
+        ButtonText = selectButton.GetComponentInChildren<Text>();
+        colorPicker = GetComponentInChildren<FlexibleColorPicker>();
+        colorPicker.gameObject.SetActive(colorPickerState);
     }
 
     private void Update()
@@ -29,5 +32,13 @@ public class TypeUI : MonoBehaviour
     public void OnButtonDown()
     {
         typesUI.Selected(this.tileType);
+    }
+
+    public void OnImageClick()
+    {
+        colorPickerState = !colorPickerState;
+        colorPicker.gameObject.SetActive(colorPickerState);
+        image.color = colorPicker.color;
+        tileType.color = image.color;
     }
 }
