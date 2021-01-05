@@ -6,9 +6,6 @@ public class TypeUI : MonoBehaviour
 {
     public TileType tileType;
     private TypesUI _typesUI;
-    // public GameObject background;
-    // public string name;
-    // public Color color;
     public Text nameUI;
     private Image image;
     private Button _button;
@@ -27,8 +24,6 @@ public class TypeUI : MonoBehaviour
         image.color = tileType.color;
         nameUI.text = tileType.name;
         buttonText.text = (_typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
-        // background.SetActive(_typesUI._tileTypeSelected == this.tileType);
-
     }
 
     public void OnButtonDown()

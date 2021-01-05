@@ -7,6 +7,6 @@ public class TypesUI : MonoBehaviour
     public void Selected (TileType _tileTypeDest)
     {
         _tileTypeSelected = _tileTypeDest;
-        Debug.Log($"TileType Name is {_tileTypeSelected.name}");
+        // Debug.Log($"TileType Name is {_tileTypeSelected.name}");
     }
 }
