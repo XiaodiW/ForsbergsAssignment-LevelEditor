@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TypeUI : MonoBehaviour
@@ -12,6 +14,7 @@ public class TypeUI : MonoBehaviour
     private Text ButtonText;
     private FlexibleColorPicker colorPicker;
     bool colorPickerState;
+    private InputField nameInput;
 
     private void Start()
     {
@@ -20,9 +23,11 @@ public class TypeUI : MonoBehaviour
         ButtonText = selectButton.GetComponentInChildren<Text>();
         colorPicker = GetComponentInChildren<FlexibleColorPicker>();
         colorPicker.gameObject.SetActive(colorPickerState);
+        nameInput = GetComponentInChildren<InputField>();
         image.color = tileType.color;
         nameText.text = tileType.name;
-
+        nameInput.gameObject.SetActive(false);
+        nameInput.text = tileType.name;
     }
 
     private void Update()
@@ -34,6 +39,7 @@ public class TypeUI : MonoBehaviour
             tileType.color = image.color;
         }
 
+        if (nameInput.gameObject.activeSelf) nameText.text = nameInput.text;
     }
 
     public void OnButtonDown()
@@ -45,6 +51,17 @@ public class TypeUI : MonoBehaviour
     {
         colorPickerState = !colorPickerState;
         colorPicker.gameObject.SetActive(colorPickerState);
+    }
+
+    public void OnNameClick()
+    {
+        nameInput.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(nameInput.gameObject,null);
+    }
+
+    public void OnNameClickEnd()
+    {
+        nameInput.gameObject.SetActive(false);
     }
     //
     //
