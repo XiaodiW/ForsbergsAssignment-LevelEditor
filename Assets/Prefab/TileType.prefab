@@ -287,8 +287,7 @@ MonoBehaviour:
   tileType:
     name: Sea
     color: {r: 0.73684216, g: 0, b: 1, a: 1}
-  background: {fileID: 0}
-  nameUI: {fileID: 758953618638281889}
+  nameText: {fileID: 758953618638281889}
 --- !u!1 &758953620578904811
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public class TileUI : MonoBehaviour
     private TypesUI _typesUI;
     private TileType _tileType;
     private Image image;
-    // private Text _text;
 
     private void Start()
     {
@@ -30,7 +29,6 @@ public class TileUI : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log($"G{_typesUI._tileTypeSelected.name}");
         _tileType = _typesUI._tileTypeSelected;
     }
 }

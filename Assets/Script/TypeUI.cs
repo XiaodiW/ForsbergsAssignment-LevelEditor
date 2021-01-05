@@ -5,29 +5,29 @@ using UnityEngine.UI;
 public class TypeUI : MonoBehaviour
 {
     public TileType tileType;
-    private TypesUI _typesUI;
-    public Text nameUI;
+    private TypesUI typesUI;
+    public Text nameText;
     private Image image;
-    private Button _button;
-    private Text buttonText;
+    private Button button;
+    private Text ButtonText;
 
     private void Start()
     {
         image = GetComponentInChildren<Image>();
-        _typesUI = GetComponentInParent<TypesUI>();
-        _button = GetComponentInChildren<Button>();
-        buttonText = _button.GetComponentInChildren<Text>();
+        typesUI = GetComponentInParent<TypesUI>();
+        button = GetComponentInChildren<Button>();
+        ButtonText = button.GetComponentInChildren<Text>();
     }
 
     private void Update()
     {
         image.color = tileType.color;
-        nameUI.text = tileType.name;
-        buttonText.text = (_typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
+        nameText.text = tileType.name;
+        ButtonText.text = (typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
     }
 
     public void OnButtonDown()
     {
-        _typesUI.Selected(this.tileType);
+        typesUI.Selected(this.tileType);
     }
 }
