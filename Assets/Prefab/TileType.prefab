@@ -187,11 +187,11 @@ RectTransform:
   m_Father: {fileID: 4945190609126847344}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -52.8, y: -6.8}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -7.6, y: 18.4}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &758953618638281890
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'TestTestText
 
@@ -477,7 +477,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType:
+    typeID: 
     name: Sea
+    color: {r: 0, g: 0, b: 0, a: 0}
     onColorChange:
       m_PersistentCalls:
         m_Calls:
@@ -494,6 +496,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   nameText: {fileID: 758953618638281889}
+  colorImage: {fileID: 758953619745649861}
   selectButton: {fileID: 758953620578904822}
 --- !u!1 &758953620578904811
 GameObject:
@@ -822,7 +825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 107.70001, y: 0.70000076}
+  m_AnchoredPosition: {x: 53.1, y: -6.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1477452921701838239

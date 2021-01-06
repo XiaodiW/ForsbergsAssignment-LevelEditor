@@ -5,8 +5,9 @@ using UnityEngine.Events;
 [System.Serializable]
 public class TileType
 {
+    public string typeID;
     public string name;
-    private Color color;
+    [SerializeField] private Color color;
     public UnityEvent<Color> onColorChange;
     
     public Color Color
@@ -18,4 +19,5 @@ public class TileType
             onColorChange.Invoke(color);
         } 
     }
+    
 }

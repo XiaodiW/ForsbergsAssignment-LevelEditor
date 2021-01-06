@@ -6,21 +6,21 @@ using UnityEngine.UI;
 
 public class TileUI : MonoBehaviour
 {
-    private TypesUI _typesUI;
-    private TileType _tileType;
+    private TypesUI typesUI;
+    public TileType tileType;
     private Image image;
 
     private void Start()
     {
-        _typesUI = FindObjectOfType<TypesUI>();
+        typesUI = FindObjectOfType<TypesUI>();
         image = GetComponentInChildren<Image>();
-        if (_tileType == null)
+        if (tileType == null)
         {
             image.color = Color.green;
         }
         else
         {
-            _tileType.onColorChange.AddListener(OnColorChange);
+            tileType.onColorChange.AddListener(OnColorChange);
         }
     }
 
@@ -31,8 +31,8 @@ public class TileUI : MonoBehaviour
 
     public void OnMouseDown()
     {
-        _tileType = _typesUI._tileTypeSelected;
-        image.color = _tileType.Color;
-        _tileType.onColorChange.AddListener(OnColorChange);
+        tileType = typesUI._tileTypeSelected;
+        image.color = tileType.Color;
+        tileType.onColorChange.AddListener(OnColorChange);
     }
 }
