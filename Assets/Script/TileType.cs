@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class TileType
 {
     public string name;
-    public Color color;
+    private Color color;
     public UnityEvent<Color> onColorChange;
     
     public Color Color

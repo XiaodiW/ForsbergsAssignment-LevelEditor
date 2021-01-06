@@ -16,9 +16,6 @@ public class TileUI : MonoBehaviour
         image = GetComponentInChildren<Image>();
         if (_tileType == null)
         {
-            // _tileType = new TileType();
-            // _tileType.name = "default";
-            // _tileType.Color = Color.green;
             image.color = Color.green;
         }
         else
