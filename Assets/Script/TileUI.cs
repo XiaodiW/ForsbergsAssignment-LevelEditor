@@ -16,19 +16,26 @@ public class TileUI : MonoBehaviour
         image = GetComponentInChildren<Image>();
         if (_tileType == null)
         {
-            _tileType = new TileType();
-            _tileType.name = "default";
-            _tileType.color = Color.green;
+            // _tileType = new TileType();
+            // _tileType.name = "default";
+            // _tileType.Color = Color.green;
+            image.color = Color.green;
+        }
+        else
+        {
+            _tileType.onColorChange.AddListener(OnColorChange);
         }
     }
 
-    private void Update()
+    private void OnColorChange(Color color)
     {
-        image.color = _tileType.color;
+        image.color = color;
     }
 
     public void OnMouseDown()
     {
         _tileType = _typesUI._tileTypeSelected;
+        image.color = _tileType.Color;
+        _tileType.onColorChange.AddListener(OnColorChange);
     }
 }

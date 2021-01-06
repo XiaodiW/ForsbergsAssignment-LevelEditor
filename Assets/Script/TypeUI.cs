@@ -9,7 +9,7 @@ public class TypeUI : MonoBehaviour
     public TileType tileType;
     private TypesUI typesUI;
     public Text nameText;
-    private Image image;
+    private Image colorImage;
     public Button selectButton;
     private Text ButtonText;
     private FlexibleColorPicker colorPicker;
@@ -18,13 +18,13 @@ public class TypeUI : MonoBehaviour
 
     private void Start()
     {
-        image = GetComponentInChildren<Image>();
+        colorImage = GetComponentInChildren<Image>();
         typesUI = GetComponentInParent<TypesUI>();
         ButtonText = selectButton.GetComponentInChildren<Text>();
         colorPicker = GetComponentInChildren<FlexibleColorPicker>();
         colorPicker.gameObject.SetActive(colorPickerState);
         nameInput = GetComponentInChildren<InputField>();
-        image.color = tileType.color;
+        colorImage.color = tileType.Color;
         nameText.text = tileType.name;
         nameInput.gameObject.SetActive(false);
         nameInput.text = tileType.name;
@@ -35,8 +35,8 @@ public class TypeUI : MonoBehaviour
         ButtonText.text = (typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
         if (colorPickerState)
         {
-            image.color = colorPicker.color;
-            tileType.color = image.color;
+            // colorImage.color = colorPicker.color;
+            tileType.Color = colorPicker.color;
         }
 
         if (nameInput.gameObject.activeSelf) nameText.text = nameInput.text;
@@ -63,18 +63,18 @@ public class TypeUI : MonoBehaviour
     {
         nameInput.gameObject.SetActive(false);
     }
-    //
-    //
-    // private void HideIfClickedOutside(GameObject panel) {
-    //     if (Input.GetMouseButton(0) && panel.activeSelf &&
-    //         !RectTransformUtility.RectangleContainsScreenPoint(
-    //             panel.GetComponent<RectTransform>(),
-    //             Input.mousePosition,
-    //             Camera.main)) {
-    //         // colorPickerState = !colorPickerState;
-    //         colorPicker.gameObject.SetActive(false);
-    //         // image.color = colorPicker.color;
-    //         // tileType.color = image.color;
-    //     }
-    // }
+
+    
+    /*private void HideIfClickedOutside(GameObject panel) {
+        if (Input.GetMouseButton(0) && panel.activeSelf &&
+            !RectTransformUtility.RectangleContainsScreenPoint(
+                panel.GetComponent<RectTransform>(),
+                Input.mousePosition,
+                Camera.main)) {
+            // colorPickerState = !colorPickerState;
+            colorPicker.gameObject.SetActive(false);
+            // image.color = colorPicker.color;
+            // tileType.Color = image.color;
+        }
+    }*/
 }
