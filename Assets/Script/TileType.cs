@@ -1,11 +1,9 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
 public class TileType
 {
-    public string typeID;
     public string name;
     [SerializeField] private Color color;
     public UnityEvent<Color> onColorChange;

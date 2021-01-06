@@ -21,8 +21,6 @@ public class TypesUI : MonoBehaviour
     public void OnAddType()
     {
         var instance = Instantiate(this.prefab, this.transform);
-        // instance.GetComponent<TileType>().name = instance.name;
-        // instance.GetComponent<TileType>().color = Color.green;
         addButtonMenu.SetSiblingIndex(transform.childCount - 1);
     }
 
@@ -30,20 +28,6 @@ public class TypesUI : MonoBehaviour
     {
         if (transform.childCount > 2)
             Destroy(transform.GetChild(transform.childCount - 2).gameObject);
-    }
-
-    public void OnSaving()
-    {
-        Debug.Log(ToSaveTypes());
-        // Debug.Log(Application.persistentDataPath);
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/Data.json", ToSaveTypes());
-    }
-
-    public void OnLoading()
-    {
-        string loadTypes = System.IO.File.ReadAllText(Application.persistentDataPath + "/Data.json");
-        TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
-        ReLoadTypes(types);
     }
 
     public string ToSaveTypes()
@@ -55,10 +39,11 @@ public class TypesUI : MonoBehaviour
              types[i] = typeUis[i].tileType;
         }
         var saveTypes = JsonHelper.ToJson(types, true);
+        Debug.Log($"{saveTypes}");
         return saveTypes;
     }
 
-    public void ReLoadTypes(TileType[] types)
+    public void ToReLoadTypes(TileType[] types)
     {
         var typeUis = GetComponentsInChildren<TypeUI>();
         foreach (var typeUI in typeUis)
@@ -69,10 +54,7 @@ public class TypesUI : MonoBehaviour
         for (int i = 0; i < types.Length; i++)
         {
             var instance = Instantiate(this.prefab, this.transform);
-            instance.tileType.typeID = types[i].typeID;
-            instance.tileType.name = types[i].name;
-            instance.tileType.Color = types[i].Color;
-            instance.name = $"TileType({i})";
+            instance.Setup(types[i]);
             addButtonMenu.SetSiblingIndex(transform.childCount - 1);
         }
         if (transform.GetChild(0) != null) _tileTypeSelected = transform.GetChild(0).GetComponent<TypeUI>().tileType;

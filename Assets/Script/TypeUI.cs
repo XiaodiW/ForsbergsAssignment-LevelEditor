@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -18,7 +16,6 @@ public class TypeUI : MonoBehaviour
 
     private void Start()
     {
-        // colorImage = GetComponentInChildren<Image>();
         typesUI = GetComponentInParent<TypesUI>();
         ButtonText = selectButton.GetComponentInChildren<Text>();
         colorPicker = GetComponentInChildren<FlexibleColorPicker>();
@@ -28,18 +25,19 @@ public class TypeUI : MonoBehaviour
         nameText.text = tileType.name;
         nameInput.gameObject.SetActive(false);
         nameInput.text = tileType.name;
-        tileType.typeID = gameObject.name;
     }
 
+    public void Setup(TileType type)
+    {
+        tileType = type;
+        colorImage.color = type.Color;
+        nameText.text = type.name;
+    }
+    
     private void Update()
     {
         ButtonText.text = (typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
-        if (colorPickerState)
-        {
-            // colorImage.color = colorPicker.color;
-            tileType.Color = colorPicker.color;
-        }
-
+        if (colorPickerState) tileType.Color = colorPicker.color;
         if (nameInput.gameObject.activeSelf) nameText.text = nameInput.text;
     }
 

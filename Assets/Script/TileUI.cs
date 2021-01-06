@@ -8,20 +8,29 @@ public class TileUI : MonoBehaviour
 {
     private TypesUI typesUI;
     public TileType tileType;
-    private Image image;
+    public Image image;
 
     private void Start()
     {
         typesUI = FindObjectOfType<TypesUI>();
-        image = GetComponentInChildren<Image>();
-        if (tileType == null)
-        {
-            image.color = Color.green;
-        }
-        else
-        {
+        // image = GetComponent<Image>();
+        // if (tileType == null)
+        // {
+            // tileType = new TileType();
+            // tileType.name = "Default";
+            // tileType.Color = Color.green;
+            // image.color = tileType.Color;
+        // }
+        // else
+        // {
             tileType.onColorChange.AddListener(OnColorChange);
-        }
+        // }
+    }
+
+    public void Setup(TileType type)
+    {
+        this.tileType = type;
+        image.color = type.Color;
     }
 
     private void OnColorChange(Color color)

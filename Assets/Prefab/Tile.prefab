@@ -90,6 +90,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35509133c3da34d1eadca5fd643e8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType:
+    typeID: 
+    name: 
+    color: {r: 0, g: 0, b: 0, a: 0}
+    onColorChange:
+      m_PersistentCalls:
+        m_Calls: []
+  image: {fileID: 8303923474912172608}
 --- !u!114 &2980475497460805053
 MonoBehaviour:
   m_ObjectHideFlags: 0
