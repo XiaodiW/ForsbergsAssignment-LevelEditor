@@ -11,6 +11,7 @@ namespace Script
     public class Level
     {
         public string name;
+        public int xGrid;
         public string typesJson;
         public string mapJson;
     }
@@ -56,6 +57,7 @@ namespace Script
             levelName.text = name;
             level.typesJson = typesUI.ToSaveTypes();
             level.mapJson = mapUI.ToSaveTiles();
+            level.xGrid = mapUI.xGrid;
             
             if(!File.Exists(path))
             {
@@ -99,6 +101,7 @@ namespace Script
             dropDownList.gameObject.SetActive(false);
             Level level = levelsTransfer.levelsList[i];
             levelName.text = level.name;
+            mapUI.xGrid = level.xGrid;
             var loadTypes = level.typesJson;
             TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
             typesUI.ToReLoadTypes(types);
