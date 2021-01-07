@@ -51,6 +51,7 @@ public class TypeUI : MonoBehaviour
     {
         colorPickerState = !colorPickerState;
         colorPicker.startingColor = tileType.Color;
+        colorPicker.color = tileType.Color;
         colorPicker.gameObject.SetActive(colorPickerState);
     }
 

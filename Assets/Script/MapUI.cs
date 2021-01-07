@@ -18,6 +18,7 @@ namespace Script
         private RectTransform _rectTransform;
         private GridLayoutGroup gridLayoutGroup;
         public int xGrid = 10;
+        public Text recentMapSize;
         
         private void Start()
         {
@@ -82,6 +83,8 @@ namespace Script
                         instance.Setup(type.tileType);
                 }
             }
+
+            showRecentMapSize();
         }
 
         void ToSetRect(int xGrid, int mapSize)
@@ -114,12 +117,18 @@ namespace Script
                 var instance = Instantiate(prefab, transform);
                 instance.Setup(typeUIs[0].tileType);
             }
+            showRecentMapSize();
         }
 
         private void ClearMap()
         {
             var tileUis = GetComponentsInChildren<TileUI>();
             foreach (var tileUi in tileUis) Destroy(tileUi.gameObject);
+        }
+
+        private void showRecentMapSize()
+        {
+            recentMapSize.text = $"{xGrid.ToString()} X {(int)mapSize/xGrid}";
         }
     }
 }
