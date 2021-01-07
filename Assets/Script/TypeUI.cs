@@ -37,6 +37,7 @@ public class TypeUI : MonoBehaviour
         {
             tileType.Color = colorPicker.color;
             colorImage.color = tileType.Color;
+            HideIfClickedOutside(colorPicker.gameObject);
         }
         if (nameInput.gameObject.activeSelf) nameText.text = nameInput.text;
     }
@@ -49,6 +50,7 @@ public class TypeUI : MonoBehaviour
     public void OnImageClick()
     {
         colorPickerState = !colorPickerState;
+        colorPicker.startingColor = tileType.Color;
         colorPicker.gameObject.SetActive(colorPickerState);
     }
 
@@ -63,18 +65,18 @@ public class TypeUI : MonoBehaviour
         tileType.name = nameInput.text;
         nameInput.gameObject.SetActive(false);
     }
-    
-    
-    /*private void HideIfClickedOutside(GameObject panel) {
+
+
+    private void HideIfClickedOutside(GameObject panel)
+    {
         if (Input.GetMouseButton(0) && panel.activeSelf &&
             !RectTransformUtility.RectangleContainsScreenPoint(
                 panel.GetComponent<RectTransform>(),
                 Input.mousePosition,
-                Camera.main)) {
-            // colorPickerState = !colorPickerState;
+                Camera.main))
+        {
+            colorPickerState = !colorPickerState;
             colorPicker.gameObject.SetActive(false);
-            // image.color = colorPicker.color;
-            // tileType.Color = image.color;
         }
-    }*/
+    }
 }
