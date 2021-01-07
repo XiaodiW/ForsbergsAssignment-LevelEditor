@@ -2498,6 +2498,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileType
       objectReference: {fileID: 0}
+    - target: {fileID: 758953620069385367, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
+      propertyPath: tileType.name
+      value: Grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 758953620069385367, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
+      propertyPath: tileType.color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 758953620069385367, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
+      propertyPath: tileType.color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 758953620069385367, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
+      propertyPath: tileType.color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 758953620069385367, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
+      propertyPath: tileType.color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4945190609126847344, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3021,10 +3041,10 @@ RectTransform:
   m_Father: {fileID: 2088946117}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 504, y: -174}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -190, y: 327}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470253161
 MonoBehaviour:
@@ -5623,10 +5643,10 @@ RectTransform:
   m_Father: {fileID: 2088946117}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 504, y: -94}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -190, y: 407}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837780998
 MonoBehaviour:
@@ -8002,6 +8022,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1668364343}
     m_Modifications:
+    - target: {fileID: 8303923474912172608, guid: ee7ef576a28e0480aa6e4c9e9f2ec151, type: 3}
+      propertyPath: m_Color.b
+      value: 0.22058558
+      objectReference: {fileID: 0}
+    - target: {fileID: 8303923474912172608, guid: ee7ef576a28e0480aa6e4c9e9f2ec151, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8303923474912172608, guid: ee7ef576a28e0480aa6e4c9e9f2ec151, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8303923474912172610, guid: ee7ef576a28e0480aa6e4c9e9f2ec151, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8844,12 +8876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileTypeSelected:
-    typeID: 
     name: 
     color: {r: 0, g: 0, b: 0, a: 0}
-    onColorChange:
-      m_PersistentCalls:
-        m_Calls: []
   prefab: {fileID: 758953620069385367, guid: c946607d8ec024bce85ac330ea2c5bd2, type: 3}
   addButtonMenu: {fileID: 1247472598}
 --- !u!224 &1468250118 stripped

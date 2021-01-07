@@ -55,9 +55,11 @@ public class TypesUI : MonoBehaviour
         for (int i = 0; i < types.Length; i++)
         {
             var instance = Instantiate(this.prefab, this.transform);
+            instance.gameObject.name = $"Type ({i})";
             instance.Setup(types[i]);
             addButtonMenu.SetSiblingIndex(transform.childCount - 1);
         }
-        if (transform.GetChild(0) != null) _tileTypeSelected = transform.GetChild(0).GetComponent<TypeUI>().tileType;
+        Debug.Log($"{transform.GetChild(0).name}"); 
+        if (transform.GetChild(0) != null) Selected (transform.GetChild(0).GetComponent<TypeUI>().tileType);
     }
 }

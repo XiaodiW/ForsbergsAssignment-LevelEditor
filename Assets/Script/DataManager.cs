@@ -24,8 +24,6 @@ namespace Script
             string loadTiles = System.IO.File.ReadAllText(Application.persistentDataPath + "/Tiles.json");
             Tile[] tiles = JsonHelper.FromJson<Tile>(loadTiles);
             mapUI.ToReLoadTiles(tiles);
-            Debug.Log($"{loadTypes}");
-            Debug.Log($"{loadTiles}");
         }
     }
 }
