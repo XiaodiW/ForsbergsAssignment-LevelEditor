@@ -28,7 +28,7 @@ namespace Script
             okButton.gameObject.SetActive(false);
             gridLayoutGroup = GetComponent<GridLayoutGroup>();
             _rectTransform = GetComponent (typeof (RectTransform)) as RectTransform;
-            OnReset();
+            OnReset(false);
         }
 
         public void OnEdit()
@@ -54,7 +54,7 @@ namespace Script
             okButton.gameObject.SetActive(false);
             xGrid = sizeOptions[xValue.value];
             mapSize = xGrid * sizeOptions[yValue.value];
-            OnReset();
+            OnReset(false);
         }
 
         public string ToSaveTiles()
@@ -72,7 +72,8 @@ namespace Script
         public void ToReLoadTiles(TileType[] tiles)
         {
             mapSize = tiles.Length;
-            OnReset();
+            ClearMap();
+            ToSetRect(xGrid, mapSize);
             var types = typesUI.GetComponentsInChildren<TypeUI>();
             for (int i = 0; i < tiles.Length; i++)
             {
@@ -104,11 +105,11 @@ namespace Script
             gridLayoutGroup.cellSize = cellSize;
         }
 
-        public void OnReset()
+        public void OnReset(bool resetTypes)
         {
             ClearMap();
             ToSetRect(xGrid, mapSize);
-            typesUI.GetComponent<TypesUI>().OnReset();
+            if(resetTypes) typesUI.GetComponent<TypesUI>().OnReset();
             var typeUIs = typesUI.GetComponentsInChildren<TypeUI>();
             for (var i = 0; i < mapSize; i++)
             {

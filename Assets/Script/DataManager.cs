@@ -36,6 +36,7 @@ namespace Script
             nameInput.gameObject.SetActive(false);
             nameInput.onEndEdit.AddListener(ToSave);
             dropDownList.gameObject.SetActive(false);
+            dropDownList.value = -1;
             dropDownList.onValueChanged.AddListener(ToLoad);
             string path = Application.persistentDataPath + "/Data.json";
             loadButton.gameObject.SetActive(File.Exists(path));
@@ -93,6 +94,7 @@ namespace Script
             }
             dropDownList.ClearOptions();
             dropDownList.AddOptions(levelList);
+            dropDownList.value = -1; //value change event can only by trigged. but the defould value is 0. first can not be selected.
             dropDownList.gameObject.SetActive(true);
         }
 
@@ -112,8 +114,8 @@ namespace Script
 
         public void OnReset()
         {
-            mapUI.OnReset();
-            typesUI.OnReset();
+            mapUI.OnReset(true);
+            // typesUI.OnReset();
         }
     }
 }

@@ -54,27 +54,15 @@ public class TypesUI : MonoBehaviour
             instance.Setup(types[i]);
             addButtonMenu.SetSiblingIndex(transform.childCount - 1);
         }
-
-        Debug.Log($"{transform.GetChild(0).name}");
-        // if (transform.GetChild(0) != null) Selected(transform.GetChild(0).GetComponent<TypeUI>().tileType);
-        Selected(GameObject.Find("Type (0)").GetComponent<TypeUI>().tileType);
+        Selected(GetComponentsInChildren<TypeUI>()[0].tileType);
     }
-
-    /*private void ClearTypes()
-    {
-        var typeUis = this.GetComponentsInChildren<TypeUI>();
-        foreach (var typeUI in typeUis)
-        {
-            DestroyImmediate(typeUI.gameObject);
-        }
-    }*/
 
     IEnumerator ClearTypes()
     {
         var typeUis = this.GetComponentsInChildren<TypeUI>();
         foreach (var typeUI in typeUis)
         {
-            DestroyImmediate(typeUI.gameObject);
+            DestroyImmediate(typeUI.gameObject); //Destroy function only set gameobject enable=false, until next frame;
         }
         yield return null;
     }
@@ -82,7 +70,6 @@ public class TypesUI : MonoBehaviour
 
     public void OnReset()
     {
-        // ClearTypes();
         StartCoroutine(ClearTypes()); //Wait for Destroied Child to be removed in next Frame;
         for (var i = 0; i < 2; i++)
         {
