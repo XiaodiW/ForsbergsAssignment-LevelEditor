@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Script
 {
-    [Serializable]
+    /*[Serializable]
     public class Tile
     {
         public string tileName;
         public Color tileColor;
-    }
+    }*/
     
     public class MapUI : MonoBehaviour
     {
@@ -19,20 +19,17 @@ namespace Script
         public string ToSaveTiles()
         {
             var tileUis = GetComponentsInChildren<TileUI>();
-            Tile[] tiles = new Tile[tileUis.Length];
+            TileType[] tiles = new TileType[tileUis.Length];
             for (int i = 0; i < tiles.Length; i++)
             {
-                Tile tileTemp = new Tile();
-                tileTemp.tileName = tileUis[i].tileType.name;
-                tileTemp.tileColor = tileUis[i].tileType.Color;
-                tiles[i] = tileTemp;
+                tiles[i] = tileUis[i].tileType;
             }
             var saveTiles = JsonHelper.ToJson(tiles, true);
             Debug.Log($"{saveTiles}");
             return saveTiles;
         }
 
-        public void ToReLoadTiles(Tile[] tiles)
+        public void ToReLoadTiles(TileType[] tiles)
         {
             var tileUis = GetComponentsInChildren<TileUI>();
             foreach (var tileUi in tileUis)
@@ -46,7 +43,7 @@ namespace Script
                 var types = typesUI.GetComponentsInChildren<TypeUI>();
                 foreach (var type in types)
                 {
-                    if (tiles[i].tileName == type.tileType.name && tiles[i].tileColor == type.tileType.Color)
+                    if (tiles[i].name == type.tileType.name && tiles[i].Color == type.tileType.Color)
                         instance.Setup(type.tileType);
                 }
             }

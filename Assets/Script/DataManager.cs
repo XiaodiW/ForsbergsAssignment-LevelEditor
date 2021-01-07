@@ -32,13 +32,11 @@ namespace Script
         {
             string loadData = System.IO.File.ReadAllText(Application.persistentDataPath + "/Data.json");
             Level level = JsonUtility.FromJson<Level>(loadData);
-            // string loadTypes = System.IO.File.ReadAllText(Application.persistentDataPath + "/Types.json");
             var loadTypes = level.typesJson;
             TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
             typeUI.ToReLoadTypes(types);
-            // string loadTiles = System.IO.File.ReadAllText(Application.persistentDataPath + "/Tiles.json");
             var loadTiles = level.mapJson;
-            Tile[] tiles = JsonHelper.FromJson<Tile>(loadTiles);
+            TileType[] tiles = JsonHelper.FromJson<TileType>(loadTiles);
             mapUI.ToReLoadTiles(tiles);
         }
     }
