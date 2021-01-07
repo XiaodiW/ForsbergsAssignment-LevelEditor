@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Script
@@ -6,7 +7,12 @@ namespace Script
     {
         public TileUI prefab;
         public GameObject typesUI;
-        
+
+        private void Start()
+        {
+            OnReset();
+        }
+
         public string ToSaveTiles()
         {
             var tileUis = GetComponentsInChildren<TileUI>();
@@ -21,12 +27,7 @@ namespace Script
 
         public void ToReLoadTiles(TileType[] tiles)
         {
-            var tileUis = GetComponentsInChildren<TileUI>();
-            foreach (var tileUi in tileUis)
-            {
-                Destroy(tileUi.gameObject);
-            }
-
+            ClearMap();
             for (int i = 0; i < tiles.Length; i++)
             {
                 var instance = Instantiate(this.prefab, this.transform);
@@ -36,6 +37,23 @@ namespace Script
                     if (tiles[i].name == type.tileType.name && tiles[i].Color == type.tileType.Color)
                         instance.Setup(type.tileType);
                 }
+            }
+        }
+
+        private void ClearMap()
+        {
+            var tileUis = GetComponentsInChildren<TileUI>();
+            foreach (var tileUi in tileUis)
+            {
+                Destroy(tileUi.gameObject);
+            }
+        }
+        public void OnReset()
+        {
+            ClearMap();
+            for (var i = 0; i < 100; i++)
+            {
+                var instance = Instantiate(prefab, transform);
             }
         }
     }

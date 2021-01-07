@@ -10,10 +10,11 @@ public class TypesUI : MonoBehaviour
 
     private void Start()
     {
-        if (transform.GetChild(0) != null) _tileTypeSelected = transform.GetChild(0).GetComponent<TypeUI>().tileType;
+        OnReset();
+        // if (transform.GetChild(0) != null) _tileTypeSelected = transform.GetChild(0).GetComponent<TypeUI>().tileType;
     }
 
-    public void Selected (TileType _tileTypeDest)
+    public void Selected(TileType _tileTypeDest)
     {
         _tileTypeSelected = _tileTypeDest;
     }
@@ -36,20 +37,16 @@ public class TypesUI : MonoBehaviour
         TileType[] types = new TileType[typeUis.Length];
         for (int i = 0; i < typeUis.Length; i++)
         {
-             types[i] = typeUis[i].tileType;
+            types[i] = typeUis[i].tileType;
         }
+
         var saveTypes = JsonHelper.ToJson(types, true);
         return saveTypes;
     }
 
     public void ToReLoadTypes(TileType[] types)
     {
-        var typeUis = GetComponentsInChildren<TypeUI>();
-        foreach (var typeUI in typeUis)
-        {
-            Destroy(typeUI.gameObject);
-        }
-
+        ClearTypes();
         for (int i = 0; i < types.Length; i++)
         {
             var instance = Instantiate(this.prefab, this.transform);
@@ -57,7 +54,32 @@ public class TypesUI : MonoBehaviour
             instance.Setup(types[i]);
             addButtonMenu.SetSiblingIndex(transform.childCount - 1);
         }
-        Debug.Log($"{transform.GetChild(0).name}"); 
-        if (transform.GetChild(0) != null) Selected (transform.GetChild(0).GetComponent<TypeUI>().tileType);
+
+        Debug.Log($"{transform.GetChild(0).name}");
+        // if (transform.GetChild(0) != null) Selected(transform.GetChild(0).GetComponent<TypeUI>().tileType);
+        Selected(GameObject.Find("Type (0)").GetComponent<TypeUI>().tileType);
+    }
+
+    private void ClearTypes()
+    {
+        var typeUis = GetComponentsInChildren<TypeUI>();
+        foreach (var typeUI in typeUis)
+        {
+            Destroy(typeUI.gameObject);
+        }
+    }
+
+    public void OnReset()
+    {
+        ClearTypes();
+        for (var i = 0; i < 2; i++)
+        {
+            var instance = Instantiate(prefab, transform);
+            instance.tileType.name = i == 0 ? "Grass" : "Sea";
+            instance.tileType.Color = i == 0 ? Color.green : Color.blue;
+            instance.gameObject.name = $"Type ({i})";
+        }
+        addButtonMenu.SetSiblingIndex(transform.childCount - 1);
+        Selected(GameObject.Find("Type (0)").GetComponent<TypeUI>().tileType);
     }
 }

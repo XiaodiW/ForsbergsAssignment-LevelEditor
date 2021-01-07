@@ -12,14 +12,14 @@ namespace Script
     }
     public class DataManager : MonoBehaviour
     {
-        public TypesUI typeUI;
+        public TypesUI typesUI;
         public MapUI mapUI;
         
         public void OnSaving()
         {
             var level = new Level();
             level.name = "Level 1";
-            level.typesJson = typeUI.ToSaveTypes();
+            level.typesJson = typesUI.ToSaveTypes();
             level.mapJson = mapUI.ToSaveTiles();
             var saveData = JsonUtility.ToJson(level, true);
             System.IO.File.WriteAllText(Application.persistentDataPath + "/Data.json", saveData);
@@ -31,10 +31,16 @@ namespace Script
             Level level = JsonUtility.FromJson<Level>(loadData);
             var loadTypes = level.typesJson;
             TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
-            typeUI.ToReLoadTypes(types);
+            typesUI.ToReLoadTypes(types);
             var loadTiles = level.mapJson;
             TileType[] tiles = JsonHelper.FromJson<TileType>(loadTiles);
             mapUI.ToReLoadTiles(tiles);
+        }
+
+        public void OnReset()
+        {
+            mapUI.OnReset();
+            typesUI.OnReset();
         }
     }
 }
