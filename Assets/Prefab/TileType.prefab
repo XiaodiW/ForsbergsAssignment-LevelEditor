@@ -477,7 +477,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType:
-    typeID: 
     name: Sea
     color: {r: 0, g: 0, b: 0, a: 0}
     onColorChange:
@@ -498,6 +497,9 @@ MonoBehaviour:
   nameText: {fileID: 758953618638281889}
   colorImage: {fileID: 758953619745649861}
   selectButton: {fileID: 758953620578904822}
+  ButtonText: {fileID: 758953618614680319}
+  colorPicker: {fileID: 1562604935367558113}
+  nameInput: {fileID: 745731527423033438}
 --- !u!1 &758953620578904811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,3 +1049,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2130943084915617137, guid: 4214b57e615806c448ba9d993d629531, type: 3}
   m_PrefabInstance: {fileID: 593874383339220625}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1562604935367558113 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2130943084915617136, guid: 4214b57e615806c448ba9d993d629531, type: 3}
+  m_PrefabInstance: {fileID: 593874383339220625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31629c56f6f83234a90f6296f902f9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

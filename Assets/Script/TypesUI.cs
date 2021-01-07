@@ -1,6 +1,7 @@
 ﻿using System;
 using Script;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TypesUI : MonoBehaviour
 {
