@@ -100,7 +100,7 @@ namespace Script
             }
             dropDownList.ClearOptions();
             dropDownList.AddOptions(levelList);
-            dropDownList.value = -1; //value change event can only by trigged. but the defould value is 0. first can not be selected.
+            // dropDownList.value = -1; //value change event can only by trigged. but the defould value is 0. first can not be selected.
             dropDownList.gameObject.SetActive(true);
         }
 
