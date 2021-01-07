@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.0153672695, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.015686274, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType:
     name: Default
-    color: {r: 0, g: 1, b: 0.253659, a: 0}
+    color: {r: 0, g: 1, b: 0.253659, a: 1}
   image: {fileID: 8303923474912172608}
 --- !u!114 &2980475497460805053
 MonoBehaviour:
