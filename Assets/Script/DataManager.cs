@@ -21,9 +21,6 @@ namespace Script
             level.name = "Level 1";
             level.typesJson = typeUI.ToSaveTypes();
             level.mapJson = mapUI.ToSaveTiles();
-            // Debug.Log(Application.persistentDataPath);
-            // System.IO.File.WriteAllText(Application.persistentDataPath + "/Types.json", typeUI.ToSaveTypes());
-            // System.IO.File.WriteAllText(Application.persistentDataPath + "/Tiles.json", mapUI.ToSaveTiles());
             var saveData = JsonUtility.ToJson(level, true);
             System.IO.File.WriteAllText(Application.persistentDataPath + "/Data.json", saveData);
         }

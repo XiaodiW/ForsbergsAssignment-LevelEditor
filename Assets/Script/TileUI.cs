@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TileUI : MonoBehaviour
@@ -25,16 +24,10 @@ public class TileUI : MonoBehaviour
         image.color = type.Color;
         // tileType.onColorChange.AddListener(OnColorChange);
     }
-
-    /*private void OnColorChange(Color color)
-    {
-        image.color = color;
-    }*/
-
+    
     public void OnMouseDown()
     {
         tileType = typesUI._tileTypeSelected;
         image.color = tileType.Color;
-        // tileType.onColorChange.AddListener(OnColorChange);
     }
 }

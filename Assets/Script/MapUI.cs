@@ -1,16 +1,7 @@
-using System;
-using Script;
 using UnityEngine;
 
 namespace Script
 {
-    /*[Serializable]
-    public class Tile
-    {
-        public string tileName;
-        public Color tileColor;
-    }*/
-    
     public class MapUI : MonoBehaviour
     {
         public TileUI prefab;
@@ -25,7 +16,6 @@ namespace Script
                 tiles[i] = tileUis[i].tileType;
             }
             var saveTiles = JsonHelper.ToJson(tiles, true);
-            Debug.Log($"{saveTiles}");
             return saveTiles;
         }
 

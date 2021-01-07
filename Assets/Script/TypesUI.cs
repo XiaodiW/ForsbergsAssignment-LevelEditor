@@ -1,5 +1,4 @@
-﻿using System;
-using Script;
+﻿using Script;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -40,7 +39,6 @@ public class TypesUI : MonoBehaviour
              types[i] = typeUis[i].tileType;
         }
         var saveTypes = JsonHelper.ToJson(types, true);
-        Debug.Log($"{saveTypes}");
         return saveTypes;
     }
 
