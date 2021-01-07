@@ -26,11 +26,15 @@ namespace Script
         public MapUI mapUI;
         public InputField nameInput;
         public Button loadButton;
+        public Dropdown dropDownList;
+        private Levels levelsTransfer;
 
         private void Start()
         {
             nameInput.gameObject.SetActive(false);
             nameInput.onEndEdit.AddListener(ToSave);
+            dropDownList.gameObject.SetActive(false);
+            dropDownList.onValueChanged.AddListener(ToLoad);
             string path = Application.persistentDataPath + "/Data.json";
             loadButton.gameObject.SetActive(File.Exists(path));
         }
@@ -77,8 +81,21 @@ namespace Script
             string path = Application.persistentDataPath + "/Data.json";
             string loadData = System.IO.File.ReadAllText(path);
             // Level level = JsonUtility.FromJson<Level>(loadData);
-            Levels levels = JsonUtility.FromJson<Levels>(loadData);
-            Level level = levels.levelsList[0];
+            levelsTransfer = JsonUtility.FromJson<Levels>(loadData);
+            List<string> levelList = new List<string>();
+            foreach (var list in levelsTransfer.levelsList)
+            {
+                levelList.Add(list.name);
+            }
+            dropDownList.ClearOptions();
+            dropDownList.AddOptions(levelList);
+            dropDownList.gameObject.SetActive(true);
+        }
+
+        public void ToLoad(int i)
+        {
+            dropDownList.gameObject.SetActive(false);
+            Level level = levelsTransfer.levelsList[i];
             var loadTypes = level.typesJson;
             TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
             typesUI.ToReLoadTypes(types);
