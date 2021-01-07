@@ -1,4 +1,5 @@
-﻿using Script;
+﻿using System.Collections;
+using Script;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,6 @@ public class TypesUI : MonoBehaviour
     private void Start()
     {
         OnReset();
-        // if (transform.GetChild(0) != null) _tileTypeSelected = transform.GetChild(0).GetComponent<TypeUI>().tileType;
     }
 
     public void Selected(TileType _tileTypeDest)
@@ -46,7 +46,7 @@ public class TypesUI : MonoBehaviour
 
     public void ToReLoadTypes(TileType[] types)
     {
-        ClearTypes();
+        StartCoroutine(ClearTypes());
         for (int i = 0; i < types.Length; i++)
         {
             var instance = Instantiate(this.prefab, this.transform);
@@ -60,18 +60,30 @@ public class TypesUI : MonoBehaviour
         Selected(GameObject.Find("Type (0)").GetComponent<TypeUI>().tileType);
     }
 
-    private void ClearTypes()
+    /*private void ClearTypes()
     {
-        var typeUis = GetComponentsInChildren<TypeUI>();
+        var typeUis = this.GetComponentsInChildren<TypeUI>();
         foreach (var typeUI in typeUis)
         {
-            Destroy(typeUI.gameObject);
+            DestroyImmediate(typeUI.gameObject);
         }
+    }*/
+
+    IEnumerator ClearTypes()
+    {
+        var typeUis = this.GetComponentsInChildren<TypeUI>();
+        foreach (var typeUI in typeUis)
+        {
+            DestroyImmediate(typeUI.gameObject);
+        }
+        yield return null;
     }
+
 
     public void OnReset()
     {
-        ClearTypes();
+        // ClearTypes();
+        StartCoroutine(ClearTypes()); //Wait for Destroied Child to be removed in next Frame;
         for (var i = 0; i < 2; i++)
         {
             var instance = Instantiate(prefab, transform);
@@ -80,6 +92,6 @@ public class TypesUI : MonoBehaviour
             instance.gameObject.name = $"Type ({i})";
         }
         addButtonMenu.SetSiblingIndex(transform.childCount - 1);
-        Selected(GameObject.Find("Type (0)").GetComponent<TypeUI>().tileType);
+        Selected(GetComponentsInChildren<TypeUI>()[0].tileType);
     }
 }

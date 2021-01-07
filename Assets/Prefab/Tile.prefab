@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType:
-    name: Default
-    color: {r: 0, g: 1, b: 0.253659, a: 1}
+    name: Grass
+    color: {r: 0, g: 1, b: 0, a: 1}
   image: {fileID: 8303923474912172608}
 --- !u!114 &2980475497460805053
 MonoBehaviour:

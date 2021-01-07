@@ -11,6 +11,7 @@ namespace Script
         private void Start()
         {
             OnReset();
+
         }
 
         public string ToSaveTiles()
@@ -28,10 +29,10 @@ namespace Script
         public void ToReLoadTiles(TileType[] tiles)
         {
             ClearMap();
+            var types = typesUI.GetComponentsInChildren<TypeUI>();
             for (int i = 0; i < tiles.Length; i++)
             {
                 var instance = Instantiate(this.prefab, this.transform);
-                var types = typesUI.GetComponentsInChildren<TypeUI>();
                 foreach (var type in types)
                 {
                     if (tiles[i].name == type.tileType.name && tiles[i].Color == type.tileType.Color)
@@ -51,9 +52,12 @@ namespace Script
         public void OnReset()
         {
             ClearMap();
+            typesUI.GetComponent<TypesUI>().OnReset();
+            var typeUIs = typesUI.GetComponentsInChildren<TypeUI>();
             for (var i = 0; i < 100; i++)
             {
                 var instance = Instantiate(prefab, transform);
+                instance.Setup(typeUIs[0].tileType);
             }
         }
     }
