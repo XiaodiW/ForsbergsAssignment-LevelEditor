@@ -1151,6 +1151,7 @@ MonoBehaviour:
   typesUI: {fileID: 1466963007}
   mapUI: {fileID: 1668364345}
   nameInput: {fileID: 190823895}
+  loadButton: {fileID: 470253161}
 --- !u!1001 &122417562
 PrefabInstance:
   m_ObjectHideFlags: 0

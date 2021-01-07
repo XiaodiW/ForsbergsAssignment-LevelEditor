@@ -25,11 +25,14 @@ namespace Script
         public TypesUI typesUI;
         public MapUI mapUI;
         public InputField nameInput;
+        public Button loadButton;
 
         private void Start()
         {
             nameInput.gameObject.SetActive(false);
             nameInput.onEndEdit.AddListener(ToSave);
+            string path = Application.persistentDataPath + "/Data.json";
+            loadButton.gameObject.SetActive(File.Exists(path));
         }
 
         public void OnSaving()
@@ -66,6 +69,7 @@ namespace Script
             }
             // saveData = JsonUtility.ToJson(level, true);
             File.WriteAllText(path, saveData);
+            loadButton.gameObject.SetActive(File.Exists(path));
         }
 
         public void OnLoading()
