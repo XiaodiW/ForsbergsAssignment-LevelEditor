@@ -28,6 +28,7 @@ namespace Script
         public Button loadButton;
         public Dropdown dropDownList;
         private Levels levelsTransfer;
+        public Text levelName;
 
         private void Start()
         {
@@ -52,6 +53,7 @@ namespace Script
             nameInput.gameObject.SetActive(false);
             var level = new Level();
             level.name = name;
+            levelName.text = name;
             level.typesJson = typesUI.ToSaveTypes();
             level.mapJson = mapUI.ToSaveTiles();
             
@@ -96,6 +98,7 @@ namespace Script
         {
             dropDownList.gameObject.SetActive(false);
             Level level = levelsTransfer.levelsList[i];
+            levelName.text = level.name;
             var loadTypes = level.typesJson;
             TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
             typesUI.ToReLoadTypes(types);
