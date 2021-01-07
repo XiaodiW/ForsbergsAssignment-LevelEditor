@@ -6,7 +6,7 @@ public class TileType
 {
     public string name;
     [SerializeField] private Color color;
-    public UnityEvent<Color> onColorChange;
+    // public UnityEvent<Color> onColorChange;
     
     public Color Color
     {
@@ -14,7 +14,7 @@ public class TileType
         set
         {
             color = value;
-            onColorChange.Invoke(color);
+            // onColorChange.Invoke(color);
         } 
     }
     

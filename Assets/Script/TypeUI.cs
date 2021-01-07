@@ -33,7 +33,11 @@ public class TypeUI : MonoBehaviour
     private void Update()
     {
         ButtonText.text = (typesUI._tileTypeSelected == this.tileType) ? "Selected" : "Select";
-        if (colorPickerState) tileType.Color = colorPicker.color;
+        if (colorPickerState)
+        {
+            tileType.Color = colorPicker.color;
+            colorImage.color = tileType.Color;
+        }
         if (nameInput.gameObject.activeSelf) nameText.text = nameInput.text;
     }
 
