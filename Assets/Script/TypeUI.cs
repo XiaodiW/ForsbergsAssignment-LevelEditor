@@ -72,8 +72,7 @@ public class TypeUI : MonoBehaviour
         if (Input.GetMouseButton(0) && panel.activeSelf &&
             !RectTransformUtility.RectangleContainsScreenPoint(
                 panel.GetComponent<RectTransform>(),
-                Input.mousePosition,
-                Camera.main))
+                Input.mousePosition))
         {
             colorPickerState = !colorPickerState;
             colorPicker.gameObject.SetActive(false);
