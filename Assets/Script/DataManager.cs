@@ -30,6 +30,7 @@ namespace Script
         public Dropdown dropDownList;
         private Levels levelsTransfer;
         public Text levelName;
+        public Text SaveDataPath;
 
         private void Start()
         {
@@ -38,7 +39,8 @@ namespace Script
             dropDownList.gameObject.SetActive(false);
             // dropDownList.value = 0; //[0] element cannot be selected. Then it will be a emputy.
             dropDownList.onValueChanged.AddListener(ToLoad);
-            string path = Application.persistentDataPath + "/Data.json";
+            string path = Application.persistentDataPath + "/Data.txt";
+            SaveDataPath.text = $"Date File is Saved at: \n{path} ."; 
             loadButton.gameObject.SetActive(File.Exists(path));
         }
 
@@ -50,7 +52,7 @@ namespace Script
 
         private void ToSave(String name)
         {
-            string path = Application.persistentDataPath + "/Data.json";
+            string path = Application.persistentDataPath + "/Data.txt";
             var saveData = "";
             nameInput.gameObject.SetActive(false);
             var level = new Level();
@@ -82,14 +84,13 @@ namespace Script
                 levels.levelsList.Add(level);
                 saveData = JsonUtility.ToJson(levels, true);
             }
-            // saveData = JsonUtility.ToJson(level, true);
             File.WriteAllText(path, saveData);
             loadButton.gameObject.SetActive(File.Exists(path));
         }
 
         public void OnLoading()
         {
-            string path = Application.persistentDataPath + "/Data.json";
+            string path = Application.persistentDataPath + "/Data.txt";
             string loadData = System.IO.File.ReadAllText(path);
             // Level level = JsonUtility.FromJson<Level>(loadData);
             levelsTransfer = JsonUtility.FromJson<Levels>(loadData);
