@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,12 +7,18 @@ using UnityEngine.UI;
 
 namespace Script
 {
-
+    [Serializable]
     public class Level
     {
-        public String name;
+        public string name;
         public string typesJson;
         public string mapJson;
+    }
+
+    [Serializable]
+    public class Levels
+    {
+        public List<Level> levelsList;
     }
     public class DataManager : MonoBehaviour
     {
@@ -33,19 +40,41 @@ namespace Script
 
         private void ToSave(String name)
         {
+            string path = Application.persistentDataPath + "/Data.json";
+            var saveData = "";
             nameInput.gameObject.SetActive(false);
             var level = new Level();
             level.name = name;
             level.typesJson = typesUI.ToSaveTypes();
             level.mapJson = mapUI.ToSaveTiles();
-            var saveData = JsonUtility.ToJson(level, true);
-            File.WriteAllText(Application.persistentDataPath + "/Data.json", saveData);
+            
+            if(!File.Exists(path))
+            {
+                var levels = new Levels();
+                var list = new List<Level>(){level};
+                levels.levelsList = list;
+                saveData = JsonUtility.ToJson(levels,true);
+                var fileStream = File.Create(path);
+                fileStream.Close();
+            }
+            else
+            {
+                string loadData = File.ReadAllText(path);
+                Levels levels = JsonUtility.FromJson<Levels>(loadData);
+                levels.levelsList.Add(level);
+                saveData = JsonUtility.ToJson(levels, true);
+            }
+            // saveData = JsonUtility.ToJson(level, true);
+            File.WriteAllText(path, saveData);
         }
 
         public void OnLoading()
         {
-            string loadData = System.IO.File.ReadAllText(Application.persistentDataPath + "/Data.json");
-            Level level = JsonUtility.FromJson<Level>(loadData);
+            string path = Application.persistentDataPath + "/Data.json";
+            string loadData = System.IO.File.ReadAllText(path);
+            // Level level = JsonUtility.FromJson<Level>(loadData);
+            Levels levels = JsonUtility.FromJson<Levels>(loadData);
+            Level level = levels.levelsList[0];
             var loadTypes = level.typesJson;
             TileType[] types = JsonHelper.FromJson<TileType>(loadTypes);
             typesUI.ToReLoadTypes(types);
