@@ -13,14 +13,12 @@ namespace Script
         public Dropdown xValue;
         public Dropdown yValue;
         public Button okButton;
-        private int mapSize = 100;
+        public int mapSize = 100;
         private List<int> sizeOptions = new List<int>(){2,3,5,8,10,20,50,100};
         private RectTransform _rectTransform;
         private GridLayoutGroup gridLayoutGroup;
         public int xGrid = 10;
-        Vector2 cellSize = new Vector2(70, 70);
         
-
         private void Start()
         {
             xValue.gameObject.SetActive(false);
@@ -93,16 +91,16 @@ namespace Script
             {
                 var y = (yGrid/xGrid)*800f;
                 _rectTransform.sizeDelta = new Vector2 (800f, y);
-                cellSize = new Vector2(800f / xGrid - 10f, 800f / xGrid - 10f);
             }
             else
             {
                 var x = (xGrid/yGrid)*800f;
                 _rectTransform.sizeDelta = new Vector2 (x, 800f);
-                cellSize = new Vector2(800f / yGrid - 10f, 800f / yGrid - 10f);
             }
-
-            gridLayoutGroup.cellSize = cellSize;
+            var size = 800/Mathf.Max(xGrid,yGrid) * 0.9f;
+            gridLayoutGroup.cellSize = new Vector2(size, size);
+            var space = 800/Mathf.Max(xGrid,yGrid) * 0.1f;
+            gridLayoutGroup.spacing = new Vector2(space, space);
         }
 
         public void OnReset(bool resetTypes)

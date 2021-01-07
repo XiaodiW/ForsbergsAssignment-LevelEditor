@@ -36,7 +36,7 @@ namespace Script
             nameInput.gameObject.SetActive(false);
             nameInput.onEndEdit.AddListener(ToSave);
             dropDownList.gameObject.SetActive(false);
-            dropDownList.value = -1;
+            // dropDownList.value = 0; //[0] element cannot be selected. Then it will be a emputy.
             dropDownList.onValueChanged.AddListener(ToLoad);
             string path = Application.persistentDataPath + "/Data.json";
             loadButton.gameObject.SetActive(File.Exists(path));
@@ -62,9 +62,15 @@ namespace Script
             
             if(!File.Exists(path))
             {
-                var levels = new Levels();
-                var list = new List<Level>(){level};
-                levels.levelsList = list;
+                var levels = new Levels(); //Create new Levels Class
+                Level emputyLevel = new Level();
+                emputyLevel.xGrid = 10;
+                emputyLevel.mapJson = level.mapJson;
+                emputyLevel.typesJson = level.typesJson;
+                emputyLevel.name = "Select Saved Level";
+                var list = new List<Level>(){emputyLevel}; //add a emputy level to the list;
+                list.Add(level); //Add first level to the list;
+                levels.levelsList = list; //assign the Emputy level and fist level to Levels Class List.
                 saveData = JsonUtility.ToJson(levels,true);
                 var fileStream = File.Create(path);
                 fileStream.Close();
@@ -114,6 +120,8 @@ namespace Script
 
         public void OnReset()
         {
+            mapUI.xGrid = 10;
+            mapUI.mapSize = 100;
             mapUI.OnReset(true);
             // typesUI.OnReset();
         }
