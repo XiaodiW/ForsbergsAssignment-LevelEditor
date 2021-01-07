@@ -89,17 +89,17 @@ namespace Script
             var yGrid = mapSize / xGrid;
             if (xGrid > yGrid)
             {
-                var y = (yGrid/xGrid)*800f;
+                var y = ((float)yGrid/xGrid)*800f;
                 _rectTransform.sizeDelta = new Vector2 (800f, y);
             }
             else
             {
-                var x = (xGrid/yGrid)*800f;
+                var x = ((float)xGrid/yGrid)*800f;
                 _rectTransform.sizeDelta = new Vector2 (x, 800f);
             }
-            var size = 800/Mathf.Max(xGrid,yGrid) * 0.9f;
+            var size = 800f/Mathf.Max(xGrid,yGrid) * 0.9f;
             gridLayoutGroup.cellSize = new Vector2(size, size);
-            var space = 800/Mathf.Max(xGrid,yGrid) * 0.1f;
+            var space = 800f/Mathf.Max(xGrid,yGrid) -size;
             gridLayoutGroup.spacing = new Vector2(space, space);
         }
 
